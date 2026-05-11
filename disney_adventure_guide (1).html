@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+<title>디즈니 어드벤처 크루즈 생활백서</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B3A5C;
+    --gold: #D4A94A;
+    --ivory: #FAF7F2;
+    --coral: #E8734A;
+    --sky: #5B9EC9;
+    --mint: #4BA89A;
+    --disney-blue: #003087;
+    --disney-red: #E4002B;
+    --disney-gold: #FFC72C;
+    --warm-gray: #6B6560;
+    --light-bg: #F5F0E8;
+    --card-bg: #FFFFFF;
+    --text-main: #2A2420;
+    --text-sub: #5A5250;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html { font-size: 18px; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--ivory);
+    color: var(--text-main);
+    line-height: 1.7;
+    min-height: 100dvh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(160deg, #001B6E 0%, #003087 60%, #1254A4 100%);
+    padding: 28px 20px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 14px, rgba(255,255,255,.025) 14px, rgba(255,255,255,.025) 15px);
+  }
+  .header::after {
+    content: '✦ ✦ ✦';
+    position: absolute;
+    bottom: 8px; left: 0; right: 0;
+    text-align: center;
+    font-size: 0.55rem;
+    color: rgba(255,199,44,0.35);
+    letter-spacing: 8px;
+  }
+  .header-castle {
+    font-size: 2.8rem;
+    margin-bottom: 6px;
+    filter: drop-shadow(0 4px 12px rgba(255,199,44,0.4));
+  }
+  .header-badge {
+    display: inline-block;
+    background: var(--disney-gold);
+    color: var(--disney-blue);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .header h1 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #FFC72C;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+  .header p {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.75);
+    font-weight: 400;
+  }
+  .route-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+  .route-chip {
+    background: rgba(255,199,44,0.18);
+    border: 1px solid rgba(255,199,44,0.7);
+    color: #FFC72C;
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+  .route-arrow { color: rgba(255,255,255,0.35); font-size: 0.9rem; }
+
+  /* ── TABS ── */
+  .tabs {
+    display: flex;
+    background: #001B6E;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex: 1;
+    min-width: 60px;
+    background: none;
+    border: none;
+    padding: 11px 4px;
+    color: rgba(255,255,255,0.45);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.76rem;
+    font-weight: 700;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+  .tab-btn.active { color: #FFC72C; border-bottom-color: #FFC72C; }
+  .tab-btn .tab-icon { font-size: 1.25rem; display: block; margin-bottom: 1px; }
+
+  /* ── SECTIONS ── */
+  .section { display: none; padding: 24px 16px 80px; max-width: 600px; margin: 0 auto; }
+  .section.active { display: block; }
+
+  .section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--disney-blue);
+    margin-bottom: 6px;
+  }
+  .section-sub {
+    font-size: 0.92rem;
+    color: var(--text-sub);
+    margin-bottom: 22px;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,48,135,0.08);
+    border-left: 4px solid var(--disney-gold);
+  }
+  .card.navy { border-left-color: var(--disney-blue); }
+  .card.coral { border-left-color: var(--coral); }
+  .card.mint { border-left-color: var(--mint); }
+  .card.sky { border-left-color: var(--sky); }
+  .card.red { border-left-color: var(--disney-red); }
+
+  .card-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+  }
+  .card-icon { font-size: 1.8rem; flex-shrink: 0; }
+  .card-title { font-size: 1.12rem; font-weight: 700; color: var(--disney-blue); }
+  .card-subtitle { font-size: 0.87rem; color: var(--text-sub); margin-top: 2px; }
+
+  /* ── INFO ROWS ── */
+  .info-row {
+    display: flex; gap: 10px; padding: 10px 0;
+    border-bottom: 1px solid #F0EBE3; align-items: flex-start; font-size: 1rem;
+  }
+  .info-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .info-label {
+    color: var(--text-sub); font-size: 0.88rem;
+    min-width: 80px; flex-shrink: 0; margin-top: 2px;
+  }
+  .info-value { font-weight: 500; flex: 1; line-height: 1.5; }
+
+  /* ── TIP / WARN BOX ── */
+  .tip-box {
+    background: linear-gradient(135deg, #FFF8E7 0%, #FFF3D4 100%);
+    border: 1.5px solid var(--disney-gold);
+    border-radius: 12px; padding: 14px; margin: 14px 0;
+    display: flex; gap: 10px; align-items: flex-start; font-size: 0.97rem;
+  }
+  .tip-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .tip-text { flex: 1; line-height: 1.6; }
+  .tip-text strong { color: var(--disney-blue); }
+
+  .warn-box {
+    background: #FFF5F2; border: 1.5px solid var(--coral);
+    border-radius: 12px; padding: 13px 15px; margin: 12px 0;
+    display: flex; gap: 10px; align-items: flex-start; font-size: 0.93rem;
+  }
+  .warn-icon { font-size: 1.3rem; flex-shrink: 0; }
+
+  /* ── WALK STEPS ── */
+  .walk-steps { margin-top: 8px; }
+  .walk-step { display: flex; gap: 12px; margin-bottom: 4px; align-items: flex-start; }
+  .step-line { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 28px; }
+  .step-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--disney-blue); color: white; font-size: 0.83rem;
+    font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .step-connector { width: 2px; flex: 1; min-height: 20px; background: #D5CFC5; margin: 2px 0; }
+  .step-content { flex: 1; padding-bottom: 16px; }
+  .step-place { font-weight: 700; font-size: 1.05rem; color: var(--disney-blue); }
+  .step-desc { font-size: 0.91rem; color: var(--text-sub); margin-top: 2px; line-height: 1.5; }
+  .step-time {
+    display: inline-block; background: var(--light-bg); color: var(--warm-gray);
+    font-size: 0.8rem; border-radius: 8px; padding: 2px 8px; margin-top: 4px;
+  }
+
+  /* ── BIG TIP ── */
+  .big-tip {
+    background: linear-gradient(135deg, var(--disney-blue) 0%, #001B6E 100%);
+    color: white; border-radius: 16px; padding: 22px;
+    margin-bottom: 16px; text-align: center;
+    box-shadow: 0 4px 20px rgba(0,48,135,0.25);
+  }
+  .big-tip .big-tip-icon { font-size: 2.2rem; margin-bottom: 8px; }
+  .big-tip .big-tip-title { font-size: 1.1rem; font-weight: 700; color: #FFC72C; margin-bottom: 6px; }
+  .big-tip .big-tip-text { font-size: 0.93rem; opacity: 0.88; line-height: 1.7; }
+
+  /* ── MEAL GRID ── */
+  .meal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+  .meal-item {
+    background: var(--light-bg); border-radius: 10px; padding: 12px; text-align: center;
+  }
+  .meal-item .meal-time { font-size: 0.8rem; color: var(--text-sub); margin-bottom: 2px; }
+  .meal-item .meal-name { font-size: 0.93rem; font-weight: 700; color: var(--disney-blue); }
+
+  /* ── RESTAURANT ROTATION ── */
+  .rotation-wrap {
+    display: flex; gap: 0; margin: 12px 0; border-radius: 12px; overflow: hidden;
+  }
+  .rotation-day {
+    flex: 1; text-align: center; padding: 12px 6px;
+  }
+  .rotation-day:nth-child(1) { background: #E8F4FF; }
+  .rotation-day:nth-child(2) { background: #FFF5E8; }
+  .rotation-day:nth-child(3) { background: #E8FFF5; }
+  .rotation-day:nth-child(4) { background: #F5E8FF; }
+  .rotation-day .r-day { font-size: 0.75rem; color: var(--text-sub); margin-bottom: 4px; }
+  .rotation-day .r-icon { font-size: 1.5rem; display: block; margin-bottom: 4px; }
+  .rotation-day .r-name { font-size: 0.78rem; font-weight: 700; color: var(--disney-blue); line-height: 1.3; }
+
+  /* ── ACTIVITY GRID ── */
+  .act-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+  .act-item {
+    background: var(--light-bg); border-radius: 12px; padding: 14px 12px; text-align: center;
+  }
+  .act-item .act-icon { font-size: 1.9rem; display: block; margin-bottom: 6px; }
+  .act-item .act-name { font-size: 0.88rem; font-weight: 700; color: var(--disney-blue); line-height: 1.3; }
+  .act-item .act-desc { font-size: 0.78rem; color: var(--text-sub); margin-top: 4px; line-height: 1.4; }
+
+  /* ── FOOD LIST / CHECKLIST ── */
+  .food-list { list-style: none; }
+  .food-list li {
+    padding: 8px 0; border-bottom: 1px dashed #E5DDD0;
+    font-size: 0.97rem; display: flex; align-items: center; gap: 8px;
+  }
+  .food-list li:last-child { border-bottom: none; }
+
+  .checklist { list-style: none; }
+  .checklist li {
+    padding: 9px 0; border-bottom: 1px solid #F0EBE3;
+    font-size: 0.97rem; display: flex; align-items: center; gap: 10px;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .check-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+  /* ── DAY HEADER ── */
+  .day-header {
+    background: var(--disney-blue); color: white; border-radius: 10px;
+    padding: 11px 16px; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .day-header .day-num {
+    background: #FFC72C; color: var(--disney-blue);
+    border-radius: 8px; width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 1rem; flex-shrink: 0;
+  }
+  .day-header .day-title { font-weight: 700; font-size: 0.97rem; }
+  .day-header .day-date { font-size: 0.83rem; opacity: 0.7; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 520px) {
+    html { font-size: 17px; }
+    .header h1 { font-size: 1.35rem; }
+    .tab-btn { font-size: 0.74rem; padding: 11px 3px; }
+    .meal-grid, .act-grid { grid-template-columns: 1fr; }
+    .rotation-wrap { flex-direction: column; }
+    .rotation-day { padding: 10px; }
+  }
+  @media (max-width: 360px) {
+    html { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-castle">🏰</div>
+  <div class="header-badge">Disney Cruise Line</div>
+  <h1>디즈니 어드벤처<br>크루즈 생활백서</h1>
+  <p>마법 같은 선상 생활 · 처음이라도 걱정 없어요</p>
+  <div class="route-bar">
+    <span class="route-chip">🇸🇬 싱가포르</span>
+    <span class="route-arrow">→</span>
+    <span class="route-chip">🌊 선상</span>
+    <span class="route-arrow">→</span>
+    <span class="route-chip">🌊 선상</span>
+    <span class="route-arrow">→</span>
+    <span class="route-chip">🇸🇬 싱가포르</span>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('ship')">
+    <span class="tab-icon">🚢</span>배 생활
+  </button>
+  <button class="tab-btn" onclick="showTab('dining')">
+    <span class="tab-icon">🍽️</span>식사
+  </button>
+  <button class="tab-btn" onclick="showTab('fun')">
+    <span class="tab-icon">🎡</span>즐길거리
+  </button>
+  <button class="tab-btn" onclick="showTab('singapore')">
+    <span class="tab-icon">🇸🇬</span>싱가포르
+  </button>
+  <button class="tab-btn" onclick="showTab('checklist')">
+    <span class="tab-icon">✅</span>준비물
+  </button>
+</div>
+
+<!-- ══════════════ TAB 1: 배 생활 ══════════════ -->
+<div id="tab-ship" class="section active">
+  <p class="section-title">🚢 배 위에서의 생활</p>
+  <p class="section-sub">디즈니 어드벤처 · 선상에서만 즐기는 크루즈</p>
+
+  <!-- 기본 정보 -->
+  <div class="card navy">
+    <div class="card-header">
+      <span class="card-icon">📋</span>
+      <div>
+        <div class="card-title">디즈니 어드벤처 기본 정보</div>
+        <div class="card-subtitle">Disney Adventure · Disney Cruise Line</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🏢 선사</span>
+      <span class="info-value">디즈니 크루즈 라인 (미국 · 월트디즈니컴퍼니)</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🚢 선박</span>
+      <span class="info-value">Disney Adventure · 아시아 최초 디즈니 크루즈</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🏠 모항</span>
+      <span class="info-value">싱가포르 마리나 베이 크루즈 센터 (MBCC)</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🎭 테마</span>
+      <span class="info-value">Disney · Pixar · Marvel · Star Wars 총출동</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🎰 카지노</span>
+      <span class="info-value"><strong>없음</strong> — 디즈니 크루즈는 카지노 운영 안 해요</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🌐 언어</span>
+      <span class="info-value">영어 기본, 일부 직원 한국어 가능</span>
+    </div>
+  </div>
+
+  <!-- 기항지 없는 크루즈 -->
+  <div class="big-tip">
+    <div class="big-tip-icon">🌊</div>
+    <div class="big-tip-title">크루즈 투 노웨어 (Cruise to Nowhere)</div>
+    <div class="big-tip-text">
+      내릴 항구 없이 <strong style="color:#FFC72C;">오직 배 위에서만</strong> 즐기는 크루즈예요.<br>
+      짐 걱정, 환전 걱정, 이동 걱정 제로! 🎉<br><br>
+      배 자체가 목적지 — 선내 시설을 마음껏 즐기세요.<br>
+      <span style="font-size:0.85rem; opacity:0.7;">수영장 · 쇼 · 캐릭터 만남 · 레스토랑 · 어트랙션</span>
+    </div>
+  </div>
+
+  <!-- 크루즈 카드 / 기본 규칙 -->
+  <div class="card coral">
+    <div class="card-header">
+      <span class="card-icon">🃏</span>
+      <div>
+        <div class="card-title">크루즈 카드 (Key to the World)</div>
+        <div class="card-subtitle">디즈니 크루즈의 만능 카드</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🔑 역할</span>
+      <span class="info-value">방 열쇠 + 선내 결제 + 입퇴선 패스 <strong>3가지 동시에!</strong></span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">💳 결제</span>
+      <span class="info-value">음료, 스파, 기념품 등 선내 유료 서비스는 카드로 후불 정산</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🎠 입장</span>
+      <span class="info-value">어트랙션·풀장 입장 시 스캔하는 곳 있어요</span>
+    </div>
+    <div class="warn-box">
+      <span class="warn-icon">⚠️</span>
+      <span>카드 절대 잃어버리지 마세요! 분실 시 즉시 Guest Services 방문하기</span>
+    </div>
+  </div>
+
+  <!-- 생활 꿀팁 -->
+  <div class="card mint">
+    <div class="card-header">
+      <span class="card-icon">💡</span>
+      <div><div class="card-title">배 안 생활 꿀팁</div></div>
+    </div>
+    <div class="info-row">
+      <span class="info-label">📱 앱</span>
+      <span class="info-value"><strong>Disney Cruise Line App</strong> 꼭 설치! 스케줄·식당 예약·선내 메시지 모두 이 앱으로</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">📶 와이파이</span>
+      <span class="info-value">유료이지만 앱 내 선내 채팅은 무료. 실시간 일정 확인은 앱으로!</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">💊 멀미</span>
+      <span class="info-value">멀미약 출항 30분 전에 드세요. 의무실 (Medical Center) 요청 가능</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🌡️ 온도</span>
+      <span class="info-value">선내 에어컨이 강해요. 얇은 긴팔 하나 챙겨두세요</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🎭 저녁</span>
+      <span class="info-value">매일 밤 쇼 공연, 덱 파티, 캐릭터 이벤트 등 무료 프로그램 가득</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">📰 일정표</span>
+      <span class="info-value">매일 아침 객실로 <strong>Navigator (일일 일정표)</strong> 배달됨. 꼭 확인!</span>
+    </div>
+  </div>
+
+  <!-- 긴급 안내 -->
+  <div class="big-tip">
+    <div class="big-tip-icon">📞</div>
+    <div class="big-tip-title">급할 때는?</div>
+    <div class="big-tip-text">
+      객실 전화로 <strong style="color:#FFC72C;">"0"</strong> 누르면 Guest Services 연결<br>
+      의무실(Medical Center)은 선내 지도 참고<br><br>
+      Guest Services 가서 이렇게 말씀하세요 👇<br>
+      <span style="font-size:1.1rem; color:#FFC72C; font-weight:900; letter-spacing:1px;">"Do you have a Korean-speaking staff?"</span><br>
+      <span style="font-size:0.83rem; opacity:0.65;">한국어 지원 직원 요청</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ TAB 2: 식사 ══════════════ -->
+<div id="tab-dining" class="section">
+  <p class="section-title">🍽️ 디즈니 식사 안내</p>
+  <p class="section-sub">로테이셔널 다이닝 · 디즈니만의 특별한 식사 시스템</p>
+
+  <!-- 로테이셔널 다이닝 핵심 설명 -->
+  <div class="big-tip">
+    <div class="big-tip-icon">🔄</div>
+    <div class="big-tip-title">로테이셔널 다이닝이란?</div>
+    <div class="big-tip-text">
+      매일 저녁 <strong style="color:#FFC72C;">다른 레스토랑</strong>으로 이동해서 식사해요.<br>
+      그런데 놀라운 점 — <strong style="color:#FFC72C;">담당 서버도 함께 이동</strong>해요! 😲<br><br>
+      첫날 나를 담당한 서버가 마지막 날까지 나를 기억하고<br>취향과 이름을 알아서 챙겨줘요.<br>
+      <span style="font-size:0.85rem; opacity:0.7;">디즈니 크루즈만의 가장 특별한 서비스예요 ✨</span>
+    </div>
+  </div>
+
+  <!-- 레스토랑 로테이션 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-icon">🗓️</span>
+      <div>
+        <div class="card-title">저녁 레스토랑 로테이션</div>
+        <div class="card-subtitle">3박/4박 일정에 따라 순서대로 돌아요</div>
+      </div>
+    </div>
+    <div class="rotation-wrap">
+      <div class="rotation-day">
+        <div class="r-day">1일차</div>
+        <span class="r-icon">🏴‍☠️</span>
+        <div class="r-name">파이럿<br>테마</div>
+      </div>
+      <div class="rotation-day">
+        <div class="r-day">2일차</div>
+        <span class="r-icon">🏰</span>
+        <div class="r-name">디즈니<br>클래식</div>
+      </div>
+      <div class="rotation-day">
+        <div class="r-day">3일차</div>
+        <span class="r-icon">🦁</span>
+        <div class="r-name">어드벤처<br>테마</div>
+      </div>
+      <div class="rotation-day">
+        <div class="r-day">4일차</div>
+        <span class="r-icon">🚀</span>
+        <div class="r-name">특별<br>갈라 디너</div>
+      </div>
+    </div>
+    <div class="tip-box">
+      <span class="tip-icon">💡</span>
+      <span class="tip-text">실제 레스토랑 이름과 테마는 승선 후 <strong>Navigator(일정표)</strong>나 <strong>Disney Cruise Line 앱</strong>으로 확인하세요. 배마다 조금씩 달라요!</span>
+    </div>
+  </div>
+
+  <!-- 식사 시간 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-icon">⏰</span>
+      <div>
+        <div class="card-title">식사 시간 안내</div>
+        <div class="card-subtitle">모든 식사 선내 포함</div>
+      </div>
+    </div>
+    <div class="meal-grid">
+      <div class="meal-item">
+        <div class="meal-time">🌅 아침</div>
+        <div class="meal-name">07:00–10:00</div>
+        <div class="meal-time">뷔페 레스토랑</div>
+      </div>
+      <div class="meal-item">
+        <div class="meal-time">☀️ 점심</div>
+        <div class="meal-name">12:00–14:00</div>
+        <div class="meal-time">뷔페 · 풀사이드</div>
+      </div>
+      <div class="meal-item">
+        <div class="meal-time">🌙 저녁</div>
+        <div class="meal-name">18:00–21:00</div>
+        <div class="meal-time">로테이셔널 레스토랑</div>
+      </div>
+      <div class="meal-item">
+        <div class="meal-time">🌃 심야</div>
+        <div class="meal-name">22:00–01:00</div>
+        <div class="meal-time">피자 · 야식 코너</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 특별 레스토랑 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-icon">🥂</span>
+      <div>
+        <div class="card-title">어른을 위한 특별 레스토랑</div>
+        <div class="card-subtitle">추가 비용 있음 · 사전 예약 필수</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🍝 Palo</span>
+      <span class="info-value">성인 전용 이탈리안 파인다이닝. 조용하고 우아한 분위기. 약 USD 45~65/인</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🇫🇷 Remy</span>
+      <span class="info-value">프랑스 요리 고급 코스. 라따뚜이 테마. 약 USD 95~125/인<br><span style="font-size:0.85rem; color:var(--text-sub);">(배에 따라 없을 수 있어요)</span></span>
+    </div>
+    <div class="tip-box">
+      <span class="tip-icon">📅</span>
+      <span class="tip-text"><strong>탑승 전 온라인 예약 강력 추천!</strong> 승선하면 인기 시간대는 금방 마감돼요. Disney Cruise Line 앱이나 웹사이트에서 미리 예약하세요.</span>
+    </div>
+  </div>
+
+  <!-- 음료/주류 -->
+  <div class="card sky">
+    <div class="card-header">
+      <span class="card-icon">🍹</span>
+      <div>
+        <div class="card-title">음료 · 주류 안내</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-label">✅ 무료</span>
+      <span class="info-value">물 · 레모네이드 · 과일 주스 · 커피 · 홍차 (식사 시)</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">💳 유료</span>
+      <span class="info-value">알코올 · 탄산음료 · 스무디 · 프리미엄 커피 등 별도 결제</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🍺 주류</span>
+      <span class="info-value">선내 바에서 구매 가능. 음료 패키지 구매하면 조금 더 저렴해요</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ TAB 3: 즐길거리 ══════════════ -->
+<div id="tab-fun" class="section">
+  <p class="section-title">🎡 선상 즐길거리</p>
+  <p class="section-sub">배 자체가 놀이공원 · 하루가 모자라요</p>
+
+  <!-- 주요 어트랙션 그리드 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-icon">🌊</span>
+      <div>
+        <div class="card-title">수영장 & 워터 어트랙션</div>
+      </div>
+    </div>
+    <div class="act-grid">
+      <div class="act-item">
+        <span class="act-icon">🎢</span>
+        <div class="act-name">AquaDuck</div>
+        <div class="act-desc">배 밖으로 돌출된 워터코스터! 선상에서 가장 짜릿한 어트랙션</div>
+      </div>
+      <div class="act-item">
+        <span class="act-icon">🏊</span>
+        <div class="act-name">패밀리 풀</div>
+        <div class="act-desc">Mickey Pool · 미키 형태의 가족용 수영장</div>
+      </div>
+      <div class="act-item">
+        <span class="act-icon">😌</span>
+        <div class="act-name">어른 전용 풀</div>
+        <div class="act-desc">Quiet Cove Pool · 18세 이상만 입장, 조용하고 여유로워요</div>
+      </div>
+      <div class="act-item">
+        <span class="act-icon">🛝</span>
+        <div class="act-name">워터 플레이</div>
+        <div class="act-desc">AquaLab 등 아이들을 위한 워터 놀이터</div>
+      </div>
+    </div>
+    <div class="tip-box">
+      <span class="tip-icon">🕗</span>
+      <span class="tip-text">수영장은 <strong>오전 일찍</strong>이 한산해요. 점심~오후는 사람 많아요!</span>
+    </div>
+  </div>
+
+  <!-- 엔터테인먼트 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-icon">🎭</span>
+      <div>
+        <div class="card-title">쇼 & 엔터테인먼트</div>
+        <div class="card-subtitle">매일 저녁 월트 디즈니 극장</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🎬 뮤지컬 쇼</span>
+      <span class="info-value">디즈니 캐릭터 주연 브로드웨이 수준 무대쇼. 무료. 저녁마다 공연</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🎉 덱 파티</span>
+      <span class="info-value">갑판 전체가 파티장으로 변하는 테마 나잇 이벤트. 불꽃놀이도!</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🎵 라이브</span>
+      <span class="info-value">선내 여러 바에서 매일 밤 라이브 음악 공연</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🎞️ 영화</span>
+      <span class="info-value">야외 갑판 대형 스크린 영화 상영 · 최신 디즈니 영화 무료</span>
+    </div>
+    <div class="warn-box">
+      <span class="warn-icon">📅</span>
+      <span>인기 쇼는 자리가 빨리 차요. <strong>Navigator 앱</strong>으로 당일 일정 확인하고 일찍 입장하세요!</span>
+    </div>
+  </div>
+
+  <!-- 캐릭터 만남 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-icon">🐭</span>
+      <div>
+        <div class="card-title">캐릭터 미팅 (Character Meet)</div>
+        <div class="card-subtitle">디즈니 크루즈의 꽃!</div>
+      </div>
+    </div>
+    <div class="act-grid">
+      <div class="act-item">
+        <span class="act-icon">🐭</span>
+        <div class="act-name">Mickey & Minnie</div>
+        <div class="act-desc">선장 복장 미키 · 공식 사진 촬영 가능</div>
+      </div>
+      <div class="act-item">
+        <span class="act-icon">🦁</span>
+        <div class="act-name">Disney · Pixar</div>
+        <div class="act-desc">겨울왕국, 토이스토리, 라이온킹 등 다양한 캐릭터</div>
+      </div>
+      <div class="act-item">
+        <span class="act-icon">🦸</span>
+        <div class="act-name">Marvel Heroes</div>
+        <div class="act-desc">스파이더맨, 아이언맨 등 마블 캐릭터 미팅</div>
+      </div>
+      <div class="act-item">
+        <span class="act-icon">⚔️</span>
+        <div class="act-name">Star Wars</div>
+        <div class="act-desc">스타워즈 캐릭터 · 다스베이더 만남</div>
+      </div>
+    </div>
+    <div class="tip-box">
+      <span class="tip-icon">📸</span>
+      <span class="tip-text">캐릭터 미팅은 줄이 길어요. 앱에서 <strong>미팅 시간 확인 후</strong> 미리 가서 대기하세요. 선내 사진사가 찍어주는 사진은 나중에 구매 가능!</span>
+    </div>
+  </div>
+
+  <!-- 스파 & 웰니스 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-icon">💆</span>
+      <div>
+        <div class="card-title">스파 & 웰니스</div>
+        <div class="card-subtitle">Senses Spa · 추가 비용</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-label">💆 마사지</span>
+      <span class="info-value">바디·스톤·아로마 등 다양한 메뉴. USD 100~200 수준</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">💪 피트니스</span>
+      <span class="info-value">Fitness Center 무료 이용 가능. 새벽부터 이용 가능</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🧖 미용실</span>
+      <span class="info-value">헤어·네일·페이셜 서비스 유료</span>
+    </div>
+    <div class="tip-box">
+      <span class="tip-icon">⭐</span>
+      <span class="tip-text">스파는 <strong>첫째 날(승선일)</strong>이 할인 프로모션 있는 경우가 많아요. 관심 있으면 승선 직후 예약하세요!</span>
+    </div>
+  </div>
+
+  <!-- 기타 즐길거리 -->
+  <div class="card mint">
+    <div class="card-header">
+      <span class="card-icon">🎮</span>
+      <div>
+        <div class="card-title">그 외 즐길거리</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🎮 게임룸</span>
+      <span class="info-value">Arcade(오락실) — 디즈니 테마 게임기 가득. 개별 요금</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🛍️ 쇼핑</span>
+      <span class="info-value">디즈니 면세 쇼핑몰. 선내 한정 굿즈, 의류, 장난감</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">📚 도서관</span>
+      <span class="info-value">조용히 책 읽을 수 있는 선내 도서관 공간</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🎨 공방</span>
+      <span class="info-value">창작 워크숍 · 그림 수업 등 참여형 프로그램</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ TAB 4: 싱가포르 ══════════════ -->
+<div id="tab-singapore" class="section">
+  <p class="section-title">🇸🇬 싱가포르 승하선 안내</p>
+  <p class="section-sub">마리나 베이 크루즈 센터 · 처음도 걱정 없어요</p>
+
+  <!-- 터미널 기본 정보 -->
+  <div class="card navy">
+    <div class="card-header">
+      <span class="card-icon">🚢</span>
+      <div>
+        <div class="card-title">마리나 베이 크루즈 센터 (MBCC)</div>
+        <div class="card-subtitle">Marina Bay Cruise Centre Singapore</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-label">📍 위치</span>
+      <span class="info-value">600 Marina Bay Drive, Singapore 018981<br>마리나 베이 샌즈 주변</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🚇 전철</span>
+      <span class="info-value">MRT 탄종 파가 역(Tanjong Pagar) — 도보 약 15분<br>또는 버스/택시 추천</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🚗 택시</span>
+      <span class="info-value">Grab 앱으로 호출 편리. 시내에서 약 SGD 15~25</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🌡️ 날씨</span>
+      <span class="info-value">싱가포르 연중 28~34도 · 습도 높아요. 선크림 필수!</span>
+    </div>
+  </div>
+
+  <!-- 승선 타임라인 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-icon">⏰</span>
+      <div>
+        <div class="card-title">승선 당일 흐름</div>
+        <div class="card-subtitle">순서대로 따라오세요</div>
+      </div>
+    </div>
+    <div class="walk-steps">
+      <div class="walk-step">
+        <div class="step-line">
+          <div class="step-num" style="background:var(--disney-gold); color:var(--disney-blue);">1</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-place">🏢 MBCC 터미널 도착</div>
+          <div class="step-desc">출항 <strong>2~3시간 전</strong>까지 도착 권장. 짐 많으면 더 일찍!</div>
+          <span class="step-time">⏱ 출항 2~3시간 전</span>
+        </div>
+      </div>
+      <div class="walk-step">
+        <div class="step-line">
+          <div class="step-num" style="background:var(--disney-gold); color:var(--disney-blue);">2</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-place">🧳 수하물 위탁</div>
+          <div class="step-desc">큰 짐은 포터에게 객실 번호 태그 붙여 위탁. 당일 필요한 것(약, 수영복)은 직접 들고!</div>
+          <span class="step-time">⏱ 5~10분</span>
+        </div>
+      </div>
+      <div class="walk-step">
+        <div class="step-line">
+          <div class="step-num" style="background:var(--disney-gold); color:var(--disney-blue);">3</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-place">🛃 체크인</div>
+          <div class="step-desc"><strong>여권 필수!</strong> 체크인 카운터에서 Key to the World 카드 수령. 보안검색 통과</div>
+          <span class="step-time">⏱ 15~30분</span>
+        </div>
+      </div>
+      <div class="walk-step">
+        <div class="step-line">
+          <div class="step-num" style="background:var(--disney-gold); color:var(--disney-blue);">4</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-place">📸 탑승 기념 사진</div>
+          <div class="step-desc">갱웨이 입구에서 디즈니 테마 기념 사진 촬영. 나중에 선내 사진숍에서 구입 가능 (선택)</div>
+          <span class="step-time">⏱ 잠깐</span>
+        </div>
+      </div>
+      <div class="walk-step">
+        <div class="step-line">
+          <div class="step-num" style="background:var(--disney-blue);">🏰</div>
+          <div class="step-connector" style="display:none;"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-place">🎉 승선 완료!</div>
+          <div class="step-desc"><strong>비상 안전훈련(필수)</strong> 참여 후 자유 시간. 바로 뷔페·수영장 이용 가능!</div>
+          <span class="step-time">⏱ 안전훈련 약 20~30분</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 싱가포르 승선 꿀팁 -->
+  <div class="card mint">
+    <div class="card-header">
+      <span class="card-icon">💡</span>
+      <div><div class="card-title">싱가포르 승선 꿀팁</div></div>
+    </div>
+    <div class="info-row">
+      <span class="info-label">💵 환전</span>
+      <span class="info-value">배 안에서는 USD 또는 카드 결제. 싱가포르 달러(SGD) 소액만 준비하면 충분</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🧴 선크림</span>
+      <span class="info-value">터미널 밖 싱가포르 날씨 매우 더워요. 미리 바르고 출발하세요!</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🍽️ 첫 식사</span>
+      <span class="info-value">승선 직후 뷔페 바로 이용 가능. 배 탐색 전에 점심 먼저!</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🎠 예약</span>
+      <span class="info-value">스파·특별 레스토랑 예약은 승선 즉시! 인기 시간대 빨리 마감</span>
+    </div>
+  </div>
+
+  <!-- 하선 -->
+  <div class="card coral">
+    <div class="card-header">
+      <span class="card-icon">🏁</span>
+      <div>
+        <div class="card-title">귀항 하선 안내</div>
+        <div class="card-subtitle">마지막 날 · 싱가포르 귀항</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🌙 전날 밤</span>
+      <span class="info-value">짐 싸서 객실 문 앞에 내놓기. 귀중품·여권·충전기는 직접 들고!</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🎟️ 하선 번호</span>
+      <span class="info-value">전날 저녁 객실로 하선 번호표 배달. 번호 순서대로 천천히 내려요</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">⏰ 시간</span>
+      <span class="info-value">오전 7시~10시 사이 순차 하선. 서두르지 않아도 괜찮아요</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">✈️ 이후</span>
+      <span class="info-value">MBCC 터미널에서 나오면 Grab 앱으로 바로 택시 호출 가능</span>
+    </div>
+    <div class="warn-box" style="margin-top:12px;">
+      <span class="warn-icon">⚠️</span>
+      <span>하선 날 아침 식당이 일찍 닫혀요. <strong>아침 일찍</strong> 드시고 내리세요!</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ TAB 5: 준비물 ══════════════ -->
+<div id="tab-checklist" class="section">
+  <p class="section-title">✅ 출발 전 준비물</p>
+  <p class="section-sub">싱가포르 출항 기준 · 선상만 즐기는 여행</p>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-icon">📄</span>
+      <div><div class="card-title">필수 서류</div></div>
+    </div>
+    <ul class="checklist">
+      <li><span class="check-icon">📘</span>여권 (유효기간 6개월 이상 남아있어야 해요)</li>
+      <li><span class="check-icon">🎫</span>크루즈 예약 확인서 (이메일 또는 인쇄)</li>
+      <li><span class="check-icon">📋</span>여행자 보험 서류</li>
+      <li><span class="check-icon">💊</span>복용 중인 약 처방전 (여분 포함)</li>
+    </ul>
+  </div>
+
+  <div class="card coral">
+    <div class="card-header">
+      <span class="card-icon">💊</span>
+      <div><div class="card-title">건강 관련</div></div>
+    </div>
+    <ul class="checklist">
+      <li><span class="check-icon">💊</span>평소 복용 약 (여분 넉넉하게)</li>
+      <li><span class="check-icon">🩹</span>멀미약 (출항 30분 전 복용)</li>
+      <li><span class="check-icon">🩺</span>소화제 · 진통제 · 지사제</li>
+      <li><span class="check-icon">🧴</span>자외선 차단제 SPF50 (수영장·갑판 필수!)</li>
+      <li><span class="check-icon">🩹</span>파스 · 반창고</li>
+    </ul>
+  </div>
+
+  <div class="card mint">
+    <div class="card-header">
+      <span class="card-icon">👕</span>
+      <div><div class="card-title">의류 · 편의</div></div>
+    </div>
+    <ul class="checklist">
+      <li><span class="check-icon">🩱</span>수영복 (수영장 매일 이용해요!)</li>
+      <li><span class="check-icon">🧥</span>얇은 긴팔 1장 (선내 에어컨 강함)</li>
+      <li><span class="check-icon">👗</span>저녁 식사용 단정한 옷 1~2벌</li>
+      <li><span class="check-icon">👟</span>편한 신발 (갑판 미끄러울 수 있어요)</li>
+      <li><span class="check-icon">🔌</span>멀티 어댑터 (영국식 플러그 타입 G)</li>
+      <li><span class="check-icon">🔋</span>보조배터리</li>
+    </ul>
+
+  </div>
+
+  <div class="card sky">
+    <div class="card-header">
+      <span class="card-icon">📱</span>
+      <div><div class="card-title">앱 · 디지털 준비</div></div>
+    </div>
+    <ul class="checklist">
+      <li><span class="check-icon">📱</span><strong>Disney Cruise Line 앱</strong> 미리 설치 (일정·예약·채팅)</li>
+      <li><span class="check-icon">🚗</span><strong>Grab 앱</strong> 설치 (싱가포르 택시)</li>
+      <li><span class="check-icon">💳</span>신용카드 (Visa/Master · 선내 후불 결제용)</li>
+      <li><span class="check-icon">💵</span>SGD 소액 (터미널→배 이동 교통비 정도)</li>
+    </ul>
+  </div>
+
+  <!-- 최종 체크 -->
+  <div class="big-tip">
+    <div class="big-tip-icon">🏰</div>
+    <div class="big-tip-title">출발 당일 최종 확인!</div>
+    <div class="big-tip-text">
+      여권 ✓ · 예약확인서 ✓ · 약 ✓<br>
+      수영복 ✓ · 선크림 ✓ · 멀티어댑터 ✓<br>
+      Disney Cruise Line 앱 ✓<br><br>
+      마법 같은 항해 되세요! 🏰✨🐭
+    </div>
+  </div>
+</div>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+</body>
+</html>
